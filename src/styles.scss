@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fafafa}
+
+@for $i from 0 through 3 {
+    #mat-tab-content-0-#{$i} > div  mat-card > mat-card-title > button > span > mat-icon {
+        vertical-align: text-bottom;
+    }
+}

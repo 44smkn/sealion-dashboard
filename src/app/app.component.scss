@@ -1,0 +1,28 @@
+.task-card {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+#new-button {
+    position: fixed;
+    z-index: 3;
+    top: 30px;
+    right: 70px;
+}
+
+.mat-icon-button {
+    width: 25px;
+}
+
+::ng-deep .mat-tab-header{
+    position: fixed  !important;
+    z-index: 2;
+    width: 100%;
+}
+
+::ng-deep .mat-tab-body-wrapper{
+    position: relative !important;
+    margin-top:55px;
+}

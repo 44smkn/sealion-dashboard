@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Create New Todo</h1>
+<div mat-dialog-content>
+  <p>What's your todo item?</p>
+  <div class="form-container">
+    <mat-form-field>
+      <mat-select placeholder="Category" [(ngModel)]="data.category">
+        <mat-option value="TASK">TASK</mat-option>
+        <mat-option value="CHORE">CHORE</mat-option>
+        <mat-option value="TICKET">TICKET</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="data.name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="setDeadline($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <mat-checkbox [(ngModel)]="data.doToday">You will do this item TODAY?</mat-checkbox>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button cdkFocusInitial  [mat-dialog-close]="data">Ok</button>
+</div>
