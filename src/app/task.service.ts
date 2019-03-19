@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import { Observable, of } from 'rxjs';
-
 import { Task } from './task';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TASKS } from './mock-tasks';
 
 @Injectable({
@@ -10,8 +9,11 @@ import { TASKS } from './mock-tasks';
 })
 export class TaskService {
 
-  constructor() { }
+  // TODO: read from configuration file
+  private tasksUrl = 'http://localhost:8080/api/tasks';
+
+  constructor(private http: HttpClient) { }
   getTasks(): Observable<Task[]> {
-    return of(TASKS);
+    return this.http.get<Task[]>(this.tasksUrl);
   }
 }
