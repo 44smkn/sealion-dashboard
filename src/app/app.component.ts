@@ -21,16 +21,25 @@ export class AppComponent {
 
   constructor(public dialog: MatDialog, private taskService: TaskService) {}
 
-  openDialog(): void {
+  createTaskDialog(): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '650px',
       data: {name: this.name, category: this.category, doToday: this.doToday, deadline: this.deadline}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
       this.taskService.createTask(result);
+    });
+  }
+
+  updateTaskDialog(task: Task): void {
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: '650px',
+      data: task
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.taskService.updateTask(result);
     });
   }
 

@@ -4,7 +4,6 @@ import { Task } from './task';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TASKS } from './mock-tasks';
 import { map } from 'rxjs/operators';
-import { join } from 'path';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +36,7 @@ export class TaskService {
   }
 
   deleteTask(id: number): void {
-    const requestPath: string = join(this.tasksUrl, id.toString());
+    const requestPath: string = this.tasksUrl + '/' + id.toString();
     this.http.delete<Task>(requestPath);
   }
 }

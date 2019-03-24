@@ -19,7 +19,7 @@
               <mat-icon>highlight_off</mat-icon>
               <span>Won't do today</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="updateTaskDialog(task)">
             <mat-icon>edit</mat-icon>
             <span>Edit</span>
           </button>
@@ -160,6 +160,6 @@
           </div>
   </mat-tab>
 </mat-tab-group>
-<button mat-fab id="new-button" (click)="openDialog()">
+<button mat-fab id="new-button" (click)="createTaskDialog()">
   <mat-icon>create</mat-icon>
 </button>
