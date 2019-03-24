@@ -23,7 +23,8 @@ export class TaskService {
           return response;
         }));
     }
-  createTask(): void {
-
+  createTask(body: Task): void {
+    this.http.post<Task>(this.tasksUrl, body)
+      .subscribe(r => console.log(r));
   }
 }
