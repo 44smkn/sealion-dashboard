@@ -7,27 +7,7 @@
     <div *ngFor="let task of tasks">
     <mat-card class="task-card" *ngIf="task.doToday">
       <mat-card-title>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <mat-icon>done</mat-icon>
-            <span>Done</span>
-          </button>
-          <button mat-menu-item>
-              <mat-icon>highlight_off</mat-icon>
-              <span>Won't do today</span>
-          </button>
-          <button mat-menu-item (click)="updateTaskDialog(task)">
-            <mat-icon>edit</mat-icon>
-            <span>Edit</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>delete</mat-icon>
-            <span>Delete</span>
-          </button>
-        </mat-menu>{{task.name}}
+        {{task.name}}
       </mat-card-title>
       <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
         {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
@@ -35,6 +15,20 @@
         <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
       <mat-card-content>
         {{task.description}}
+        <div class="action-buttons">
+          <button mat-icon-button matTooltip="Done" class="task-action">
+            <mat-icon>done</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Won't do today" class="task-action">
+            <mat-icon>highlight_off</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Edit" class="task-action" (click)="updateTaskDialog(task)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Archive" class="task-action">
+          <mat-icon>archive</mat-icon>
+        </button>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -87,27 +81,7 @@
     <div *ngFor="let task of tasks">
         <mat-card class="task-card" *ngIf="task.category=='TASK'">
             <mat-card-title>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>done</mat-icon>
-                  <span>Done</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>today</mat-icon>
-                    <span>Will do today</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>edit</mat-icon>
-                  <span>Edit</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>delete</mat-icon>
-                  <span>Delete</span>
-                </button>
-              </mat-menu>{{task.name}}
+              {{task.name}}
             </mat-card-title>
             <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
               {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
@@ -115,6 +89,24 @@
               <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
             <mat-card-content>
               {{task.description}}
+              <div class="action-buttons">
+                <button mat-icon-button>
+                  <mat-icon>done</mat-icon>
+                  <span>Done</span>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon>today</mat-icon>
+                  <span>Will do today</span>
+              </button>
+              <button mat-icon-button>
+                <mat-icon>edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-icon-button>
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+              </div>
             </mat-card-content>
           </mat-card>
           </div>
