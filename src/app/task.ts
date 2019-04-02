@@ -6,4 +6,5 @@ export interface Task {
     deadline: Date;
     link: string;
     description: string;
+    ticketId: string;
 }
