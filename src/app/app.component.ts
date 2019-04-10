@@ -43,10 +43,15 @@ export class AppComponent {
     });
   }
 
-  changeDoToday(task: Task, doToday: boolean): void {
+  changeDoTodayStatus(task: Task, doToday: boolean): void {
     task.doToday = doToday;
     this.taskService.updateTask(task);
   } 
+
+  changeArchiveStatus(task: Task, archive: boolean):void {
+    task.archive = archive;
+    this.taskService.updateTask(task);
+  }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {

@@ -19,13 +19,13 @@
           <button mat-icon-button matTooltip="Done" class="task-action">
             <mat-icon>done</mat-icon>
           </button>
-          <button mat-icon-button matTooltip="Won't do today" class="task-action" (click)="changeDoToday(task, false)">
+          <button mat-icon-button matTooltip="Won't do today" class="task-action" (click)="changeDoTodayStatus(task, false)">
             <mat-icon>highlight_off</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Edit" class="task-action" (click)="updateTaskDialog(task)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Archive" class="task-action">
+        <button mat-icon-button matTooltip="Archive" class="task-action" (click)="changeArchiveStatus(task, true)">
           <mat-icon>archive</mat-icon>
         </button>
         </div>

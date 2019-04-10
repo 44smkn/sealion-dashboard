@@ -7,4 +7,5 @@ export interface Task {
     link: string;
     description: string;
     ticketId: string;
+    archive: boolean;
 }
