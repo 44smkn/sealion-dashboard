@@ -19,7 +19,7 @@
           <button mat-icon-button matTooltip="Done" class="task-action">
             <mat-icon>done</mat-icon>
           </button>
-          <button mat-icon-button matTooltip="Won't do today" class="task-action">
+          <button mat-icon-button matTooltip="Won't do today" class="task-action" (click)="changeDoToday(task, false)">
             <mat-icon>highlight_off</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Edit" class="task-action" (click)="updateTaskDialog(task)">
