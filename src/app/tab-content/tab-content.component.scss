@@ -1,0 +1,26 @@
+.action-buttons {
+    display: flex;
+}
+
+.task-action {
+    margin-right: 5px;
+    margin-left: 5px;
+} 
+
+.task-card {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+#new-button {
+    position: fixed;
+    z-index: 3;
+    top: 30px;
+    right: 70px;
+}
+
+.mat-icon-button {
+    width: 25px;
+}

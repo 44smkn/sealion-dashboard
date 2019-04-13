@@ -14,6 +14,7 @@ export class AppComponent {
   tasks: Task[];
   days: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  // later, they will be not needed.
   category: string;
   name: string;
   doToday: boolean;
@@ -46,9 +47,9 @@ export class AppComponent {
   changeDoTodayStatus(task: Task, doToday: boolean): void {
     task.doToday = doToday;
     this.taskService.updateTask(task);
-  } 
+  }
 
-  changeArchiveStatus(task: Task, archive: boolean):void {
+  changeArchiveStatus(task: Task, archive: boolean): void {
     task.archive = archive;
     this.taskService.updateTask(task);
   }
@@ -61,5 +62,13 @@ export class AppComponent {
   getTasks(): void {
     this.taskService.getTasks()
         .subscribe(tasks => this.tasks = tasks);
+  }
+
+  getTodayTask(): Task[] {
+    return this.tasks.filter(v => v.doToday);
+  }
+
+  getSpecifiedTasks(kind: string): Task[] {
+    return this.tasks.filter(v => v.category === kind);
   }
 }

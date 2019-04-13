@@ -1,126 +1,33 @@
 <mat-tab-group backgroundColor="primary" color="accent">
 
   <mat-tab>
-    <app-tab-content></app-tab-content>
+    <ng-template mat-tab-label>
+      <mat-icon>today</mat-icon>TODAY
+    </ng-template>
+    <app-tab-content [tasks]="getTodayTask()" [days]="days" [todayTask]="true" [archived]="false"></app-tab-content>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>group</mat-icon>TICKET
     </ng-template>
-    <div *ngFor="let task of tasks">
-    <mat-card class="task-card" *ngIf="task.category=='TICKET'">
-        <mat-card-title>
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <mat-icon>done</mat-icon>
-              <span>Done</span>
-            </button>
-            <button mat-menu-item>
-                <mat-icon>today</mat-icon>
-                <span>Will do today</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>edit</mat-icon>
-              <span>Edit</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>delete</mat-icon>
-              <span>Delete</span>
-            </button>
-          </mat-menu>{{task.name}}
-        </mat-card-title>
-        <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
-          {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
-          ({{ days[task.deadline.getDay()]}}) <br>
-          <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
-        <mat-card-content>
-          {{task.description}}
-        </mat-card-content>
-      </mat-card>
-      </div>
+    <app-tab-content [tasks]="getSpecifiedTasks('TICKET')" [days]="days" [todayTask]="false" [archived]="false"></app-tab-content>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>work</mat-icon>TASK
     </ng-template>
-    <div *ngFor="let task of tasks">
-        <mat-card class="task-card" *ngIf="task.category=='TASK'">
-            <mat-card-title>
-              {{task.name}}
-            </mat-card-title>
-            <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
-              {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
-              ({{ days[task.deadline.getDay()]}}) <br>
-              <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
-            <mat-card-content>
-              {{task.description}}
-              <div class="action-buttons">
-                <button mat-icon-button>
-                  <mat-icon>done</mat-icon>
-                  <span>Done</span>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon>today</mat-icon>
-                  <span>Will do today</span>
-              </button>
-              <button mat-icon-button>
-                <mat-icon>edit</mat-icon>
-                <span>Edit</span>
-              </button>
-              <button mat-icon-button>
-                <mat-icon>delete</mat-icon>
-                <span>Delete</span>
-              </button>
-              </div>
-            </mat-card-content>
-          </mat-card>
-          </div>
+    <app-tab-content [tasks]="getSpecifiedTasks('TASK')" [days]="days" [todayTask]="false" [archived]="false"></app-tab-content>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>comment</mat-icon>CHORE
     </ng-template>
-    <div *ngFor="let task of tasks">
-        <mat-card class="task-card" *ngIf="task.category=='CHORE'">
-            <mat-card-title>
-              <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                  <mat-icon>done</mat-icon>
-                  <span>Done</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon>today</mat-icon>
-                    <span>Will do today</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>edit</mat-icon>
-                  <span>Edit</span>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon>delete</mat-icon>
-                  <span>Delete</span>
-                </button>
-              </mat-menu>{{task.name}}
-            </mat-card-title>
-            <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
-              {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
-              ({{ days[task.deadline.getDay()]}}) <br>
-              <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
-            <mat-card-content>
-              {{task.description}}
-            </mat-card-content>
-          </mat-card>
-          </div>
+    <app-tab-content [tasks]="getSpecifiedTasks('CHORE')" [days]="days" [todayTask]="false" [archived]="false"></app-tab-content>
   </mat-tab>
+
 </mat-tab-group>
 <button mat-fab id="new-button" (click)="createTaskDialog()">
   <mat-icon>create</mat-icon>
