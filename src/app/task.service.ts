@@ -25,14 +25,12 @@ export class TaskService {
         }));
     }
 
-  createTask(body: Task): void {
-    this.http.post<Task>(this.tasksUrl, body)
-      .subscribe(r => console.log(r));
+  createTask(body: Task): Observable<Task> {
+    return this.http.post<Task>(this.tasksUrl, body);
   }
 
-  updateTask(body: Task): void {
-    this.http.put<Task>(this.tasksUrl, body)
-      .subscribe(r => console.log(r));
+  updateTask(body: Task): Observable<Task>  {
+    return this.http.put<Task>(this.tasksUrl, body);
   }
 
   deleteTask(id: number): void {
