@@ -4,28 +4,28 @@
     <ng-template mat-tab-label>
       <mat-icon>today</mat-icon>TODAY
     </ng-template>
-    <app-tab-content [tasks]="getTodayTask()" [days]="days" [todayTask]="true" [archived]="false"></app-tab-content>
+    <app-tab-content [tasks]="getTodayTask()" [days]="days" [todayTask]="true" [archived]="false" (reload)="getTasks()"></app-tab-content>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>group</mat-icon>TICKET
     </ng-template>
-    <app-tab-content [tasks]="getSpecifiedTasks('TICKET')" [days]="days" [todayTask]="false" [archived]="false"></app-tab-content>
+    <app-tab-content [tasks]="getSpecifiedTasks('TICKET')" [days]="days" [todayTask]="false" [archived]="false" (reload)="getTasks()"></app-tab-content>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>work</mat-icon>TASK
     </ng-template>
-    <app-tab-content [tasks]="getSpecifiedTasks('TASK')" [days]="days" [todayTask]="false" [archived]="false"></app-tab-content>
+    <app-tab-content [tasks]="getSpecifiedTasks('TASK')" [days]="days" [todayTask]="false" [archived]="false" (reload)="getTasks()"></app-tab-content>
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon>comment</mat-icon>CHORE
     </ng-template>
-    <app-tab-content [tasks]="getSpecifiedTasks('CHORE')" [days]="days" [todayTask]="false" [archived]="false"></app-tab-content>
+    <app-tab-content [tasks]="getSpecifiedTasks('CHORE')" [days]="days" [todayTask]="false" [archived]="false" (reload)="getTasks()"></app-tab-content>
   </mat-tab>
 
 </mat-tab-group>

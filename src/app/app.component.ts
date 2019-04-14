@@ -29,29 +29,8 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.taskService.createTask(result);
+      this.taskService.createTask(result).subscribe(() => this.getTasks());
     });
-  }
-
-  updateTaskDialog(task: Task): void {
-    const dialogRef = this.dialog.open(TaskDialogComponent, {
-      width: '650px',
-      data: task
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.taskService.updateTask(result);
-    });
-  }
-
-  changeDoTodayStatus(task: Task, doToday: boolean): void {
-    task.doToday = doToday;
-    this.taskService.updateTask(task);
-  }
-
-  changeArchiveStatus(task: Task, archive: boolean): void {
-    task.archive = archive;
-    this.taskService.updateTask(task);
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

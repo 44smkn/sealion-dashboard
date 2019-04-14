@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../task';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { TaskService } from '../task.service';
 import { TaskDialogComponent } from '../task/task-dialog.component';
 
@@ -16,12 +16,14 @@ export class TabContentComponent implements OnInit {
   @Input() todayTask: boolean;
   @Input() archived: boolean;
 
+  @Output() reload = new EventEmitter<boolean>();
+
   category: string;
   name: string;
   doToday: boolean;
   deadline: Date;
 
-  constructor(public dialog: MatDialog, private taskService: TaskService) { }
+  constructor(private snackBar: MatSnackBar, public dialog: MatDialog, private taskService: TaskService) { }
 
   ngOnInit() {
   }
@@ -34,6 +36,26 @@ export class TabContentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.taskService.updateTask(result);
+    });
+  }
+
+  changeArchiveStatus(task: Task, archive: boolean): void {
+    task.archive = archive;
+    this.taskService.updateTask(task).subscribe(() => {
+      this.snackBar.open('タスクをアーカイブしました', 'OK', {
+        duration: 2000,
+      });
+      this.reload.next(true);
+    });
+  }
+
+  changeDoTodayStatus(task: Task, doToday: boolean): void {
+    task.doToday = doToday;
+    this.taskService.updateTask(task).subscribe(() => {
+      this.snackBar.open(doToday ? '今日行うタスクに追加しました' : '今日行うタスクから外しました', 'OK', {
+        duration: 2000,
+      });
+      this.reload.next(true);
     });
   }
 
