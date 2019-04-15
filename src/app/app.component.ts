@@ -50,4 +50,8 @@ export class AppComponent {
   getSpecifiedTasks(kind: string): Task[] {
     return this.tasks.filter(v => v.category === kind);
   }
+
+  getArchivedTasks(): Task[] {
+    return this.tasks.filter(v => v.archive === true);
+  }
 }

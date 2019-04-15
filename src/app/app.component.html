@@ -28,6 +28,13 @@
     <app-tab-content [tasks]="getSpecifiedTasks('CHORE')" [days]="days" [todayTask]="false" [archived]="false" (reload)="getTasks()"></app-tab-content>
   </mat-tab>
 
+  <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>archive</mat-icon>ARCHIVED
+      </ng-template>
+      <app-tab-content [tasks]="getArchivedTasks('CHORE')" [days]="days" [todayTask]="false" [archived]="true" (reload)="getTasks()"></app-tab-content>
+    </mat-tab>
+
 </mat-tab-group>
 <button mat-fab id="new-button" (click)="createTaskDialog()">
   <mat-icon>create</mat-icon>

@@ -1,44 +1,41 @@
-<div *ngFor="let task of tasks">
-  <mat-card class="task-card">
-    <mat-card-title>
-      {{task.ticketId||""}}{{task.name}}
-    </mat-card-title>
-    <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
-      {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
-      ({{ days[task.deadline.getDay()]}}) <br>
-      <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
-    <mat-card-content>
-      {{task.description}}
-      <div class="action-buttons">
-        <button mat-icon-button matTooltip="Done" class="task-action">
-          <mat-icon>done</mat-icon>
-        </button>
-        <div *ngIf="todayTask; else notTodayTask">
-          <button mat-icon-button matTooltip="Won't do today" class="task-action"
-            (click)="changeDoTodayStatus(task, false)">
-            <mat-icon>highlight_off</mat-icon>
+<div class="task-card-container">
+  <div *ngFor="let task of tasks">
+    <mat-card class="task-card">
+      <mat-card-title>
+        {{task.ticketId||""}}{{task.name}}
+      </mat-card-title>
+      <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
+        {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
+        ({{ days[task.deadline.getDay()]}}) <br>
+        <a href="{{task.link}}" target="_blank">{{task.link}}</a></mat-card-subtitle>
+      <mat-card-content>
+        {{task.description}}
+        <div class="action-buttons">
+          <button mat-icon-button matTooltip="Done" class="task-action" (click)="changeArchiveStatus(task, true)">
+            <mat-icon>done</mat-icon>
           </button>
+          <div *ngIf="todayTask; else notTodayTask">
+            <button mat-icon-button matTooltip="Won't do today" class="task-action"
+              (click)="changeDoTodayStatus(task, false)">
+              <mat-icon>highlight_off</mat-icon>
+            </button>
+          </div>
+          <ng-template #notTodayTask>
+            <button mat-icon-button matTooltip="Will do today" class="task-action"
+              (click)="changeDoTodayStatus(task, true)">
+              <mat-icon>today</mat-icon>
+            </button>
+          </ng-template>
+          <button mat-icon-button matTooltip="Edit" class="task-action" (click)="updateTaskDialog(task)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <div *ngIf="archived">
+            <button mat-icon-button matTooltip="Delete" class="task-action">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
-        <ng-template #notTodayTask>
-          <button mat-icon-button matTooltip="Will do today" class="task-action"
-            (click)="changeDoTodayStatus(task, true)">
-            <mat-icon>today</mat-icon>
-          </button>
-        </ng-template>
-        <button mat-icon-button matTooltip="Edit" class="task-action" (click)="updateTaskDialog(task)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <div *ngIf="archived; else notArchived">
-          <button mat-icon-button matTooltip="Delete" class="task-action">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-        <ng-template #notArchived>
-          <button mat-icon-button matTooltip="Archive" class="task-action" (click)="changeArchiveStatus(task, true)">
-            <mat-icon>archive</mat-icon>
-          </button>
-        </ng-template>
-      </div>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
