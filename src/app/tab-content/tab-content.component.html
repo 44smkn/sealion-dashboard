@@ -30,7 +30,7 @@
             <mat-icon>edit</mat-icon>
           </button>
           <div *ngIf="archived">
-            <button mat-icon-button matTooltip="Delete" class="task-action">
+            <button mat-icon-button matTooltip="Delete" class="task-action" (click)="deleteTask(task)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>

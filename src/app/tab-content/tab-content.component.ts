@@ -59,4 +59,13 @@ export class TabContentComponent implements OnInit {
     });
   }
 
+  deleteTask(task: Task): void {
+    this.taskService.deleteTask(task.id).subscribe( () => {
+      this.snackBar.open('タスクを削除しました', 'OK', {
+        duration: 2000,
+      });
+      this.reload.next(true);
+    });
+  }
+
 }

@@ -33,8 +33,8 @@ export class TaskService {
     return this.http.put<Task>(this.tasksUrl, body);
   }
 
-  deleteTask(id: number): void {
+  deleteTask(id: number): Observable<Task> {
     const requestPath: string = this.tasksUrl + '/' + id.toString();
-    this.http.delete<Task>(requestPath);
+    return this.http.delete<Task>(requestPath);
   }
 }
