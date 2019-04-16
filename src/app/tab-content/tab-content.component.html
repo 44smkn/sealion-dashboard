@@ -2,7 +2,7 @@
   <div *ngFor="let task of tasks">
     <mat-card class="task-card">
       <mat-card-title>
-        {{task.ticketId||""}}{{task.name}}
+        {{task.ticketId||""}} {{task.name}}
       </mat-card-title>
       <mat-card-subtitle>Deadline: {{task.deadline.getFullYear()}}年
         {{task.deadline.getMonth()+1}}月 {{task.deadline.getDate()}}日
