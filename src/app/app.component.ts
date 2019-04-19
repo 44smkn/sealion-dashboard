@@ -44,7 +44,7 @@ export class AppComponent {
   }
 
   getTodayTask(): Task[] {
-    return this.tasks.filter(v => v.doToday);
+    return this.tasks.filter(v => v.doToday && !v.archive);
   }
 
   getSpecifiedTasks(kind: string): Task[] {
