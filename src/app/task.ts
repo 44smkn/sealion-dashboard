@@ -4,7 +4,6 @@ export interface Task {
     name: string;
     doToday: boolean;
     deadline: Date;
-    link: string;
     description: string;
     ticketId: string;
     archive: boolean;

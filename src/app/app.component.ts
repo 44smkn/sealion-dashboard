@@ -19,16 +19,18 @@ export class AppComponent {
   name: string;
   doToday: boolean;
   deadline: Date;
+  description: string;
 
   constructor(public dialog: MatDialog, private taskService: TaskService) {}
 
   createTaskDialog(): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       width: '650px',
-      data: {name: this.name, category: this.category, doToday: this.doToday, deadline: this.deadline}
+      data: {name: this.name, category: this.category, doToday: this.doToday, deadline: this.deadline, description: this.description}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       this.taskService.createTask(result).subscribe(() => this.getTasks());
     });
   }
